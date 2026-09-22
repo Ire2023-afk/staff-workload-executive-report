@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Workload and Wellbeing: Executive Report</title>
+
+  <style>
+    :root {
+      --navy: #17365d;
+      --blue: #2f75b5;
+      --light-blue: #eaf3f8;
+      --orange: #ed7d31;
+      --green: #548235;
+      --dark: #1f2933;
+      --muted: #5c6770;
+      --border: #d7dde3;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--dark);
+      background: #f6f8fa;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: var(--white);
+      padding: 52px 20px 40px;
+    }
+
+    .hero,
+    main,
+    .footer-content {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      line-height: 1.15;
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 16px 0 0;
+      font-size: 1.08rem;
+      opacity: 0.95;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--navy);
+      font-size: 0.93rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 30px 20px 48px;
+    }
+
+    section {
+      margin: 26px 0;
+      padding: 30px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(20, 40, 60, 0.04);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--navy);
+      font-size: 1.7rem;
+      border-bottom: 3px solid var(--blue);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      color: var(--blue);
+      margin-top: 24px;
+    }
+
+    .summary-grid,
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 16px;
+      margin: 22px 0 8px;
+    }
+
+    .card {
+      border-left: 5px solid var(--blue);
+      background: var(--light-blue);
+      padding: 18px;
+      border-radius: 6px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1rem;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    .highlight {
+      font-size: 1.05rem;
+      background: #fff5e9;
+      border-left: 5px solid var(--orange);
+      padding: 16px 18px;
+      border-radius: 6px;
+    }
+
+    .dashboard-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 18px 0 8px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+    }
+
+    .caption {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 22px 20px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 650px) {
+      section {
+        padding: 22px;
+      }
+
+      nav ul {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="hero">
+      <h1>Staff Workload and Wellbeing: Executive Report</h1>
+      <p>
+        An illustrative analysis of departmental workload, staffing demand,
+        overtime, satisfaction, and synthetic workforce-retention patterns.
+      </p>
+    </div>
+  </header>
+
+  <nav aria-label="Report navigation">
+    <ul>
+      <li><a href="#summary">Executive Summary</a></li>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#methods">Methods</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#recommendations">Recommendations</a></li>
+      <li><a href="#limitations">Sources & Limitations</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="summary">
+      <h2>Home / Executive Summary</h2>
+
+      <p>
+        This report brings together two separate illustrative analyses:
+        a staff scheduling dataset used to examine workload and wellbeing by
+        department, and a synthetic workforce dataset used to explore
+        associations between overtime, work-life balance, and attrition.
+      </p>
+
+      <div class="summary-grid">
+        <div class="card">
+          <h3>Workload</h3>
+          <p>
+            Estimated weekly hours vary by department, with all departmental
+            averages shown above the illustrative 40-hour planning benchmark.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Demand</h3>
+          <p>
+            Patient load and estimated weekly hours should be monitored
+            together to identify teams facing sustained operational pressure.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Wellbeing</h3>
+          <p>
+            Overtime and satisfaction are presented as descriptive indicators
+            for workforce-planning discussion rather than causal evidence.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Retention Risk</h3>
+          <p>
+            In the synthetic dataset, attrition patterns differ by overtime
+            status and work-life balance rating.
+          </p>
+        </div>
+      </div>
+
+      <p class="highlight">
+        Executive message: use workload, demand, overtime, and wellbeing
+        indicators together to support early, targeted staffing and retention
+        interventions. Neither dataset should be used alone to infer causation
+        or determine clinical staffing adequacy.
+      </p>
+    </section>
+
+    <section id="introduction">
+      <h2>Introduction</h2>
+
+      <p>
+        Workforce sustainability depends on balancing operational demand with
+        staff capacity and wellbeing. High workloads, frequent overtime, and
+        low satisfaction may signal pressure that deserves further review.
+        This executive report uses interactive Tableau dashboard outputs to
+        present patterns that can inform workforce-planning discussions.
+      </p>
+
+      <p>
+        The report intentionally keeps the two data sources separate. The
+        staff scheduling data describe departmental workload and wellbeing
+        indicators. The employee attrition data are synthetic and are used
+        only to illustrate workforce-risk and retention analysis techniques.
+      </p>
+    </section>
+
+    <section id="methods">
+      <h2>Methods</h2>
+
+      <h3>Data preparation and analysis</h3>
+      <ul>
+        <li>
+          Staff scheduling data were analysed by department using estimated
+          weekly hours, patient load, overtime hours, and satisfaction score.
+        </li>
+        <li>
+          A 40-hour line was used as an illustrative weekly planning
+          benchmark; it is not a clinical staffing-standard threshold.
+        </li>
+        <li>
+          High-workload counts were summarised by department to identify the
+          relative concentration of staff at or above the selected workload
+          threshold.
+        </li>
+        <li>
+          The separate synthetic workforce dataset was analysed using
+          employee count, attrition, overtime status, work-life balance, job
+          role, and project count.
+        </li>
+        <li>
+          Results are descriptive. They identify patterns and associations,
+          not causal effects.
+        </li>
+      </ul>
+
+      <h3>Visualisation approach</h3>
+      <p>
+        Tableau dashboards were created to compare departments, display the
+        distribution of estimated weekly hours, explore patient-load and
+        overtime relationships, and summarise synthetic attrition patterns.
+        Department filtering supports focused operational review in the staff
+        scheduling dashboard.
+      </p>
+    </section>
+
+    <section id="results">
+      <h2>Results</h2>
+
+      <h3>Staff Scheduling Workload and Wellbeing</h3>
+
+      <img
+        class="dashboard-image"
+        src="images/staff-scheduling-dashboard.png"
+        alt="Staff Scheduling Workload and Wellbeing Tableau dashboard">
+      <p class="caption">
+        Figure 1. Staff Scheduling Workload and Wellbeing Dashboard.
+        The 40-hour line is an illustrative planning benchmark.
+      </p>
+
+      <div class="result-grid">
+        <div class="card">
+          <h3>Departmental weekly hours</h3>
+          <p>
+            Average estimated weekly hours differ across ER, General Medicine,
+            ICU, and Pediatrics. Review departments above the 40-hour planning
+            benchmark alongside workload distribution and staffing context.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>High-workload staff</h3>
+          <p>
+            High-workload staff counts can help prioritise departments for
+            closer review, rota adjustment, or workload-redistribution
+            discussions.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Patient-load relationship</h3>
+          <p>
+            Patient load and estimated weekly hours should be considered
+            jointly. A higher workload pattern alone does not establish that
+            patient load caused longer hours.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Overtime and satisfaction</h3>
+          <p>
+            Overtime and satisfaction score provide useful wellbeing
+            indicators, but they should be interpreted with contextual
+            qualitative evidence from staff and managers.
+          </p>
+        </div>
+      </div>
+
+      <h3>Synthetic Workforce-Risk and Retention</h3>
+
+      <img
+        class="dashboard-image"
+        src="images/workforce-risk-dashboard.png"
+        alt="Synthetic Workforce-Risk and Retention Tableau dashboard">
+      <p class="caption">
+        Figure 2. Synthetic Workforce-Risk and Retention Dashboard.
+        This analysis uses synthetic employee records and is illustrative only.
+      </p>
+
+      <p>
+        The synthetic dashboard contains 10,000 employee records and reports
+        an overall attrition rate of 14.0%, an overtime rate of 29%, and a low
+        work-life-balance rate of 25.0%. Attrition is higher in the overtime
+        group than in the non-overtime group, and lower work-life-balance
+        ratings are associated with higher attrition. These are descriptive
+        synthetic-data patterns, not real organisational results or proof of
+        causation.
+      </p>
+    </section>
+
+    <section id="recommendations">
+      <h2>Conclusion and Recommendations</h2>
+
+      <p>
+        The dashboards indicate the value of monitoring workforce risk through
+        a combined view of workload, demand, overtime, and wellbeing rather
+        than relying on a single metric.
+      </p>
+
+      <ol>
+        <li>
+          Review departments with high estimated weekly hours and large
+          high-workload staff counts, beginning with local rota and capacity
+          discussions.
+        </li>
+        <li>
+          Monitor patient load alongside staffing levels, shift design, case
+          complexity, and non-clinical workload before making resource
+          decisions.
+        </li>
+        <li>
+          Review overtime patterns regularly and consider targeted support,
+          workload redistribution, or scheduling changes where prolonged
+          overtime is identified.
+        </li>
+        <li>
+          Combine dashboard evidence with staff feedback, absence patterns,
+          turnover data, and management judgement before acting.
+        </li>
+        <li>
+          Use the synthetic retention dashboard only as a demonstration of
+          analytical method; repeat the analysis with validated local data
+          before applying it to real workforce policy.
+        </li>
+      </ol>
+    </section>
+
+    <section id="limitations">
+      <h2>Data Sources and Limitations</h2>
+
+      <h3>Data sources</h3>
+      <ul>
+        <li>
+          Staff Scheduling Dataset: illustrative departmental records
+          containing estimated weekly hours, patient load, overtime hours,
+          satisfaction score, and department.
+        </li>
+        <li>
+          <code>employee_attrition_performance.csv</code>: a synthetic dataset
+          containing 10,000 employee records used for illustrative
+          workforce-risk and retention analysis.
+        </li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+        <li>
+          Both analyses are descriptive and cannot demonstrate causal
+          relationships.
+        </li>
+        <li>
+          The 40-hour line is an illustrative planning benchmark, not a
+          clinical staffing adequacy standard or a regulatory threshold.
+        </li>
+        <li>
+          Estimated weekly hours, patient load, overtime, and satisfaction may
+          not capture case complexity, skill mix, leave, vacancies, shift
+          patterns, or local operational conditions.
+        </li>
+        <li>
+          The attrition dataset is synthetic; it must not be interpreted as
+          evidence about a real organisation or employee population.
+        </li>
+        <li>
+          The two datasets were not joined because they represent separate
+          contexts and do not share a valid employee-level linkage.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>
+        Prepared by [Adeleke Adeeko] | [Professional Certificate in Data Analytics - Capstone Project] | [Imperial College Business School] |
+        [September 2026]
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
